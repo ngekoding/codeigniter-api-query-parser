@@ -1,0 +1,21 @@
+{
+    "name": "ngekoding/codeigniter-api-query-parser",
+    "description": "A query parser for REST-APIs based on CodeIgniter",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nur Muhammad",
+            "email": "blog.nurmuhammad@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Ngekoding\\CodeIgniterApiQueryParser\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.6",
+        "greenlion/php-sql-parser": "^4.5"
+    }
+}
