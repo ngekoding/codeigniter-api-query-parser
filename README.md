@@ -122,3 +122,20 @@ R: will return the array of the users sort by their `names` ascending
 
 Q: /users?limit=10&page=3   
 R: will return a part of the array of the users (from the 21st to 30th)
+
+## Column Alias
+
+When working with SQL expression in selecting data or using join with ambiguous column name, **the library automatically will try to find the original column name or its expression** to use for the filter feature. But, you can still manually define the column alias for better use, expecially to resolving the ambiguous column name when using join.
+
+For example, joining posts table with categories table in the example above will return an `id` from the posts table. So, when we try to get the data with `id` 1, 2 or 3 (`SQL WHERE IN`) using filter[]=id:in:1,2,3 we get the ambiguous column error.
+
+Here is the **column alias** to solve it.
+
+```php
+$queryParser = new \Ngekoding\CodeIgniterApiQueryParser\QueryParser($queryBuilder);
+
+// Tell that the `id` is `p.id` (posts table id)
+$queryParser->addColumnAlias('id', 'p.id');
+
+$result = $queryParser->applyParams(); // done
+```
