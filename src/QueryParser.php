@@ -35,16 +35,24 @@ class QueryParser
     }
 
     /**
-     * Add column alias
+     * Add column alias(es)
      * 
-     * @param $alias The column alias
-     * @param $expression The column name or expression
+     * @param mixed $alias The column alias(es)
+     * @param mixed $expression The column name or expression
      * 
      * @return self
      */
-    public function addColumnAlias($alias, $expression)
+    public function addColumnAlias($alias, $expression = null)
     {
-        $this->columnAliases[$alias] = $expression;
+        if (is_array($alias)) {
+            foreach ($alias as $a => $expr) {
+                $this->columnAliases[$a] = $expr;
+            }
+        } elseif (empty($expression)) {
+            throw new \Exception('The `$expression` parameter must not be empty.');
+        } else {
+            $this->columnAliases[$alias] = $expression;
+        }
 
         return $this;
     }

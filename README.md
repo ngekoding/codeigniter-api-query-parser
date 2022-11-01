@@ -137,5 +137,11 @@ $queryParser = new \Ngekoding\CodeIgniterApiQueryParser\QueryParser($queryBuilde
 // Tell that the `id` is `p.id` (posts table id)
 $queryParser->addColumnAlias('id', 'p.id');
 
+// Or add multiple aliases at once
+$queryParser->addColumnAlias([
+    'id' => 'p.id',
+    'title' => 'p.title'
+]);
+
 $result = $queryParser->applyParams(); // done
 ```
