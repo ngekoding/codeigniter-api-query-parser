@@ -47,6 +47,10 @@ class ColumnNameResolver
                     $key =  $select['base_expr'].'('.implode(', ', $parts).')';
                 }
                 $columnAliases[$alias] = $key;
+            } elseif (count($select['no_quotes']['parts']) == 2) {
+                $key = $select['base_expr'];
+                $alias = $select['no_quotes']['parts'][1];
+                $columnAliases[$alias] = $key;
             }
         }
 
